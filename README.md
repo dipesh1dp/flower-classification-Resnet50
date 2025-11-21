@@ -10,9 +10,8 @@ This project implements a transfer learning pipeline for classifying flowers int
 
 ## Demo 
 
-<p align="left">
-  <img src="assets\resnet_demo.gif" alt="App Header" width="800"/>
-</p>
+![Demo](assets/resnet_demo.gif)
+
 
 ---
 
