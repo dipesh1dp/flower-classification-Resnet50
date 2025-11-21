@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="frontend\assets\header.png" alt="App Header" width="250"/>
+  <img src="assets\header.png" alt="App Header" width="250"/>
 </p>
 
 ## 🌸 102 Category Flower Classification using ResNet50
@@ -25,12 +25,37 @@ This project implements a transfer learning pipeline for classifying flowers int
 ## Demo 
 
 <p align="left">
-  <img src="frontend\assets\input.png" alt="App Header" width="600"/>
+  <img src="assets\resnet_demo.gif" alt="App Header" width="600"/>
 </p>
 
-<p align="left">
-  <img src="frontend\assets\output.png" alt="App Header" width="600"/>
-</p>
+---
+
+### 📎 File Structure
+
+```
+├── app/
+|   ├── __init__.py
+|   ├── inference.py
+|   ├── main.py
+|   ├── preprocessing.py
+|   ├── upload.py
+|   └── utils/
+|       └── class_mapping.json
+|
+├── assets/
+|   └── resnet_demo.gif
+|
+├── model/
+|   ├── best_flower_model.pth   # PyTorch Model
+|   └── resnet50_flower.onnx    # ONNX Model
+|
+├── model-training.ipynb            # Training Notebook (ran on Kaggle)
+|
+├── requirements.txt
+|
+└── README.md
+      
+```
 
 ## 🧪 Training Details 
 ### 📁Dataset
@@ -60,11 +85,11 @@ This project implements a transfer learning pipeline for classifying flowers int
 
 ### ⚙ Hyperparameters Tuned via Optuna
 
-* `learning_rate`: between `1e-5` and `1e-2`
-* `batch_size`: `[8, 16, 32]`
-* `optimizer`: `['Adam', 'SGD']`
-* `weight_decay`: `1e-5` to `1e-2`
-* `momentum`: for SGD, between `0.85` and `0.99`
+* lr:  `1e-4, 5e-3`
+* optimizer: `['Adam', 'AdamW']`
+* batch_size: `16, 32`
+* weight_decay: `1e-5, 1e-3`
+* dropout: `0.4, 0.6`
 
 ---
 
@@ -75,29 +100,28 @@ This project implements a transfer learning pipeline for classifying flowers int
   ```json
   {
     "optimizer": "Adam",
-    "lr": 0.005495396524417391,
-    "batch_size": 8,
-    "weight_decay": 0.0006037709271197784
+    "lr": 0.00022715809721755387,
+    "batch_size": 16,
+    "weight_decay": 1.065704022543824e-05, 
+    "dropout": 0.4664370979686941
     }
   ```
 ### Performance: 
-| Metric        | Validation   | Test     |
-| ------------- | -----------  | -------  |
-| **Loss**      | `0.7556`     | `0.8808` |
-| **Accuracy**  | `83.50%`     | `78.54%` |
-| **Precision** | `67.51%`     | `59.96%` |
-| **Recall**    | `61.43%`     | `53.95%` |
-| **F1 Score**  | `63.63%`     | `56.13%` |
-
-
-
+| Metric        | Test     |
+| ------------- |----------|
+| **Accuracy**  | `91.40%` |
+| **Precision** | `90.34%` |
+| **Recall**    | `92.97%` |
+| **F1 Score**  | `91.04%` |
 ---
+
+
 ## How to run? 
 
 1. Clone the Repository
 ```bash
 git clone https://github.com/dipesh1dp/toxic-comment-app.git
-cd bert-toxic-comment-classifier
+cd RESNET50-FINE-TUNING
 ```
 2. Create and Activate a Virtual Environment (Optional but Recommended)
 On Windows:
@@ -117,41 +141,6 @@ pip install -r requirements.txt
 4. Run the FastAPI server 
 ```bash
 uvicorn app.main:app --reload 
-```
-Your backend will now be running at: http://127.0.0.1:8000. You can also see the docs at: http://127.0.0.1:8000/docs
-
-5. Run the Streamlit frontend
-```bash
-streamlit run frontend/streamlit_ui.py
-```
-
----
-
-### 📎 File Structure
-
-```
-├── app/
-|   ├── __init__.py
-|   ├── inference.py
-|   ├── main.py
-|   ├── preprocessing.py
-|   └── utils/
-|       └── class_mapping.json
-|
-├── model/
-|   ├── best_resnet50_flower.pth
-|   └── resnet50_flower.onnx
-|
-├── frontend/
-|   ├── streamlit_ui.py
-|   └── assets/
-|       ├── header.png
-|       ├── input.png 
-|       └── output.png
-|
-├── model-training.ipynb            # Training Notebook (ran on Kaggle)
-└── README.md
-      
 ```
 
 ---
