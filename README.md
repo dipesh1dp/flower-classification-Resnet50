@@ -8,25 +8,10 @@ This project implements a transfer learning pipeline for classifying flowers int
 
 ---
 
-### 📌 Project Highlights
-
-* ResNet50 transfer learning (final FC layer fine-tuned)
-* Optuna-based hyperparameter tuning with:
-
-  * Learning rate
-  * Optimizer (`Adam`, `SGD`)
-  * Batch size
-  * Weight decay
-* Early stopping + Optuna pruning
-* Model export to PyTorch `.pth` and ONNX `.onnx` format
-
----
-
 ## Demo 
 
-<p align="left">
-  <img src="assets\resnet_demo.gif" alt="App Header" width="600"/>
-</p>
+![Demo](assets/resnet_demo.gif)
+
 
 ---
 
