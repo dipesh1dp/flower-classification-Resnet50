@@ -15,7 +15,7 @@ This project implements a transfer learning pipeline for classifying flowers int
 
 ---
 
-### 📎 File Structure
+### File Structure
 
 ```
 ├── app/
@@ -42,8 +42,8 @@ This project implements a transfer learning pipeline for classifying flowers int
       
 ```
 
-## 🧪 Training Details 
-### 📁Dataset
+## Training Details 
+### Dataset
 
 * [Oxford 102 Category Flower Dataset](https://www.robots.ox.ac.uk/~vgg/data/flowers/102/index.html)
 * Dataset contains:
@@ -54,7 +54,7 @@ This project implements a transfer learning pipeline for classifying flowers int
 
 ---
 
-### ⚒ Training Workflow
+### Training Workflow
 
 1. Load pretrained ResNet-50 from `torchvision.models`.
 2. Replace the final FC layer to output 102 classes.
@@ -68,7 +68,7 @@ This project implements a transfer learning pipeline for classifying flowers int
     
 ---
 
-### ⚙ Hyperparameters Tuned via Optuna
+### Hyperparameters Tuned via Optuna
 
 * lr:  `1e-4, 5e-3`
 * optimizer: `['Adam', 'AdamW']`
@@ -78,7 +78,7 @@ This project implements a transfer learning pipeline for classifying flowers int
 
 ---
 
-## 📊 Results & Performance
+## Results & Performance
 
 ### Best Hyperparameters:
 
@@ -99,6 +99,12 @@ This project implements a transfer learning pipeline for classifying flowers int
 | **Recall**    | `92.97%` |
 | **F1 Score**  | `91.04%` |
 ---
+
+## PyTorch vs ONNX Comparison
+| Model   |  Accuracy  |  F1 (Macro)   |   Inference Time (s)  |   Model Size (MB) |   Memory (MB) |
+|---------|------------|---------------|-----------------------|-------------------|---------------|
+| PyTorch | `0.91397`  | `0.910382`    | `521.485845`          | `90.47`           | `2.027953`    |
+| ONNX    | `0.91397`  | `0.910382`    | `299.880491`          | `90.40`           | `1.096907`    |
 
 
 ## How to run? 
@@ -130,18 +136,9 @@ uvicorn app.main:app --reload
 
 ---
 
-### 🙌 Credits
-
-* [Oxford Visual Geometry Group](https://www.robots.ox.ac.uk/~vgg/)
-* TorchVision for pretrained models
-* Optuna for efficient hyperparameter tuning
-
----
 
 ### 📌 License
 
 MIT License
 
 ---
-
-Learning Project by [Dipesh Pandit](https://www.linkedin.com/in/dipesh1dp/).
